@@ -28,11 +28,13 @@ hawkins::hawkins(std::string url)
     std::string content((std::istreambuf_iterator<char>(t)),
                         std::istreambuf_iterator<char>());
     str = content;
-    
+    this->parse();
 }
 
-hawkins::~hawkins(){
+hawkins::~hawkins()
+{
     //destructor!
+    //A clever joke about Shiva being the destroyer of worlds goes here, perhaps?
 }
 
 /**
@@ -46,33 +48,39 @@ void hawkins::parse()
         str_to_json = true;
     }
 }
+
 /**
  @brief This function returns paintable elements in the json file.
  
  This function takes the json object that you have and returns an array that contains elements of the "paintAttrs" type. 
+ 
+ @return Array of type "paintAttrs".
  */
 
-Array<paintAttrs> hawkins::getPaintableElements(){
+Array<paintAttrs> hawkins::getPaintableElements()
+{
     Array<paintAttrs> arr = {};
-    if(str_to_json == false){
-        this->parse();
-    }
-    for (auto &element: j){
+    for (auto &element: j)
+    {
         std::string typeOfJSONElement = element["type"];
-        if(typeOfJSONElement == "painted_text"){
+        if(typeOfJSONElement == "painted_text")
+        {
             arr.add(generatePaintTextElement(element));
         }
-        if(typeOfJSONElement == "painted_rect"){
+        if(typeOfJSONElement == "painted_rect")
+        {
             arr.add(generatePaintRectElement(element));
         }
-        if(typeOfJSONElement == "painted_ellipse"){
+        if(typeOfJSONElement == "painted_ellipse")
+        {
             arr.add(generatePaintEllipseElement(element));
         }
     }
     return arr;
 }
 
-paintAttrs hawkins::generatePaintTextElement(json element){
+paintAttrs hawkins::generatePaintTextElement(json element)
+{
     paintAttrs paintAttr;
     paintAttr.type = "text";
     paintAttr.x = element["position"]["x"];
@@ -84,7 +92,9 @@ paintAttrs hawkins::generatePaintTextElement(json element){
     paintAttr.font = Font(element["font"], element["font-size"], 0);
     return paintAttr;
 }
-paintAttrs hawkins::generatePaintRectElement(json element){
+
+paintAttrs hawkins::generatePaintRectElement(json element)
+{
     paintAttrs paintAttr;
     paintAttr.type = "rect";
     paintAttr.x = element["position"]["x"];
@@ -95,7 +105,8 @@ paintAttrs hawkins::generatePaintRectElement(json element){
     return paintAttr;
 }
 
-paintAttrs hawkins::generatePaintEllipseElement(json element){
+paintAttrs hawkins::generatePaintEllipseElement(json element)
+{
     paintAttrs paintAttr;
     paintAttr.type = "ellipse";
     paintAttr.x = element["position"]["x"];
@@ -106,14 +117,28 @@ paintAttrs hawkins::generatePaintEllipseElement(json element){
     return paintAttr;
 }
 
+// The fun part begins here-ish.
 
-
+void hawkins::getComponents()
+{
+    for (auto &element: j)
+    {
+        std::string typeOfJSONElement = element["type"];
+        if(typeOfJSONElement == "component"){
+            std::cout << element["component_type"] <<std::endl;
+            std::string name = element["name"];            
+            
+        }
+    }
+}
 
 //==============================================================================
 MainContentComponent::MainContentComponent(): jsonElements("/Users/ashvala/Projects/JSONHawkins/Source/layout.json")
 {
     
     setSize (800, 600);
+    jsonElements.parse();
+    jsonElements.getComponents();
 }
 
 MainContentComponent::~MainContentComponent()
@@ -122,20 +147,26 @@ MainContentComponent::~MainContentComponent()
 
 void MainContentComponent::paint (Graphics& g)
 {
-    
+    //background
     g.fillAll (Colour(51,51,51));
-    Array<paintAttrs> arr = jsonElements.getPaintableElements();
-    for (paintAttrs paintableElement: arr){
-        if(paintableElement.type == "text"){
+    //array of paint arrays.
+    Array<paintAttrs> arr(jsonElements.getPaintableElements());
+    //iterate through array
+    for (paintAttrs paintableElement: arr)
+    {
+        if(paintableElement.type == "text")
+        {
             g.setFont(paintableElement.font);
             g.setColour(paintableElement.color);
             g.drawText(paintableElement.text, paintableElement.x,paintableElement.y, paintableElement.width, paintableElement.height, 1, 1);
         }
-        if(paintableElement.type == "rect"){
+        if(paintableElement.type == "rect")
+        {
             g.setColour(paintableElement.color);
             g.drawRect(paintableElement.x, paintableElement.y, paintableElement.width, paintableElement.height);
         }
-        if(paintableElement.type == "ellipse"){
+        if(paintableElement.type == "ellipse")
+        {
             g.setColour(paintableElement.color);
             g.drawEllipse((float) paintableElement.x, (float) paintableElement.y, (float) paintableElement.width, (float)paintableElement.height,1.0);
         }

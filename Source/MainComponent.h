@@ -12,10 +12,21 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include <json.hpp>
 
+
+/**
+ Structure to hold attributes to a paintable thing. 
+ @param type - type
+ @param x - x coordinate
+ @param y - y coordinate
+ @param width - width
+ @param height - height
+ @param color - assigned color
+ @param text - text
+ @param font - font
+ */
+
 struct paintAttrs{
     std::string type;
-    //    int position[2] = {};
-    //    int size[2] = {};
     int x;
     int y;
     int width;
@@ -25,7 +36,10 @@ struct paintAttrs{
     Font font;
 };
 
+
 using json = nlohmann::json;
+
+//std::map<std::string,TextButton> HawkinsTextButton;
 
 class hawkins{
     
@@ -34,6 +48,7 @@ public:
     ~hawkins();
     void parse();
     Array<paintAttrs> getPaintableElements();
+    void getComponents();
 private:
     enum hawkins_types{
         painted_text,
@@ -57,8 +72,10 @@ protected:
  */
 class MainContentComponent   : public Component
 {
+    
 public:
     //==============================================================================
+    
     MainContentComponent();
     ~MainContentComponent();
     
@@ -67,6 +84,7 @@ public:
     
 private:
     hawkins jsonElements;
+    
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };
