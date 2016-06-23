@@ -27,7 +27,8 @@ This is an example of a painted text object
         "text": "Hello, Hawkins",
         "font-size": 48.0
 }
-    ```
+
+```
 
 The fundamental basic attributes are:
 
@@ -47,3 +48,5 @@ The enumeration of types is as follows:
 - component
 
 `painted_text` allows you to additionally change the font and what the text is.
+
+#### Components:
