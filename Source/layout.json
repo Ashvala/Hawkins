@@ -166,7 +166,7 @@
         "type": "component",
         "component_type": "TextButton",
         "name": "Another Button",
-        "callback-function": "Another ButtonPressed",
+        "callback-function": "AnotherButtonPressed",
         "position": {
             "x": 30,
             "y": 540

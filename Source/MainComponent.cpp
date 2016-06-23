@@ -17,7 +17,7 @@
 MainContentComponent::MainContentComponent(): jsonElements("/Users/ashvala/Projects/JSONHawkins/Source/layout.json")
 {
     
-    setSize (800, 600);
+    setSize (1152, 768);
     ComponentArray = jsonElements.getTextComponents();
     for (auto &child: ComponentArray){
         std::cout<<child<<std::endl;
@@ -26,6 +26,7 @@ MainContentComponent::MainContentComponent(): jsonElements("/Users/ashvala/Proje
         t->setButtonText(child["name"]);
         t->setTopLeftPosition(child["position"]["x"], child["position"]["y"]);
         t->setBounds(child["position"]["x"], child["position"]["y"], child["size"]["width"], child["size"]["height"]);
+        t->addListener(this);
         textButtonArray.add(t);
     }
 }
@@ -67,12 +68,19 @@ void MainContentComponent::paint (Graphics& g)
 
 void MainContentComponent::resized()
 {
-    for(int i = 0; i < ComponentArray.size(); i++){
-        
-        //        t.setBounds(child["position"]["x"], child["position"]["y"], child["size"]["width"], child["size"]["height"]);
+    for(int i = 0; i < ComponentArray.size(); i++)
+    {
         json child_data = ComponentArray[i];
-        std::cout << "Setting component data" <<std::endl;
         textButtonArray[i]->setBounds(child_data["position"]["x"], child_data["position"]["y"], child_data["size"]["width"], child_data["size"]["height"]);
     }
     
+}
+void MainContentComponent::buttonClicked (Button* button)
+{
+    int buttonIndex = textButtonArray.indexOf(button);
+    if (buttonIndex != -1)
+    {
+        std::cout << "button pressed! "<< textButtonArray.indexOf(button) << std::endl;
+        std::cout << "associated json for button: " << ComponentArray[buttonIndex] << std::endl;
+    }
 }

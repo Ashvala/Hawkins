@@ -173,7 +173,7 @@ private:
  This component lives inside our window, and this is where you should put all
  your controls and content.
  */
-class MainContentComponent   : public Component
+class MainContentComponent   : public Component, public Button::Listener
 {
     
 public:
@@ -184,11 +184,11 @@ public:
     
     void paint (Graphics&);
     void resized();
-    
+    void buttonClicked (Button*);
 private:
     hawkins jsonElements;
     Array<json> ComponentArray;
-    OwnedArray<TextButton> textButtonArray;
+    OwnedArray<Button> textButtonArray;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };
