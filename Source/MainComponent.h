@@ -11,6 +11,9 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include <json.hpp>
+#include <fstream>
+#include <string>
+
 
 
 /**
@@ -24,46 +27,146 @@
  @param text - text
  @param font - font
  */
-
+using json = nlohmann::json;
 struct paintAttrs{
     std::string type;
     int x;
     int y;
     int width;
-    int height; 
+    int height;
     Colour color;
     std::string text;
     Font font;
 };
 
-
-using json = nlohmann::json;
-
-//std::map<std::string,TextButton> HawkinsTextButton;
-
 class hawkins{
+protected:
+    paintAttrs generatePaintTextElement(json element)
+    {
+        paintAttrs paintAttr;
+        paintAttr.type = "text";
+        paintAttr.x = element["position"]["x"];
+        paintAttr.y = element["position"]["y"];
+        paintAttr.width = element["size"]["width"];
+        paintAttr.height = element["size"]["height"];
+        paintAttr.text = element["text"];
+        paintAttr.color = Colour(element["colour"][0],element["colour"][1],element["colour"][2]);
+        paintAttr.font = Font(element["font"], element["font-size"], 0);
+        return paintAttr;
+    }
+    
+    paintAttrs generatePaintRectElement(json element)
+    {
+        paintAttrs paintAttr;
+        paintAttr.type = "rect";
+        paintAttr.x = element["position"]["x"];
+        paintAttr.y = element["position"]["y"];
+        paintAttr.width = element["size"]["width"];
+        paintAttr.height = element["size"]["height"];
+        paintAttr.color = Colour(element["colour"][0],element["colour"][1],element["colour"][2]);
+        return paintAttr;
+    }
+    
+    paintAttrs generatePaintEllipseElement(json element)
+    {
+        paintAttrs paintAttr;
+        paintAttr.type = "ellipse";
+        paintAttr.x = element["position"]["x"];
+        paintAttr.y = element["position"]["y"];
+        paintAttr.width = element["size"]["width"];
+        paintAttr.height = element["size"]["height"];
+        paintAttr.color = Colour(element["colour"][0],element["colour"][1],element["colour"][2]);
+        return paintAttr;
+    }
     
 public:
-    hawkins(std::string); //this is inefficient, right off the bat. But, this is just a proof of concept.
-    ~hawkins();
-    void parse();
-    Array<paintAttrs> getPaintableElements();
-    void getComponents();
+    /**
+     @brief Constructor
+     @param url URL
+     */
+    hawkins(std::string url)
+    {
+        std::ifstream t(url);
+        std::string content((std::istreambuf_iterator<char>(t)),
+                            std::istreambuf_iterator<char>());
+        str = content;
+        this->parse();
+    }
+    
+    ~hawkins()
+    {
+        //destructor!
+        //A clever joke about Shiva being the destroyer of worlds goes here, perhaps?
+    }
+    
+    /**
+     @brief this converts the json file's string to a json object.
+     */
+    void parse()
+    {
+        
+        j = json::parse(str);
+        if (str_to_json == false){
+            str_to_json = true;
+        }
+    }
+    
+    /**
+     @brief This function returns paintable elements in the json file.
+     
+     This function takes the json object that you have and returns an array that contains elements of the "paintAttrs" type.
+     
+     @return Array of type "paintAttrs".
+     */
+    
+    Array<paintAttrs> getPaintableElements()
+    {
+        Array<paintAttrs> arr = {};
+        for (auto &element: j)
+        {
+            std::string typeOfJSONElement = element["type"];
+            if(typeOfJSONElement == "painted_text")
+            {
+                arr.add(generatePaintTextElement(element));
+            }
+            if(typeOfJSONElement == "painted_rect")
+            {
+                arr.add(generatePaintRectElement(element));
+            }
+            if(typeOfJSONElement == "painted_ellipse")
+            {
+                arr.add(generatePaintEllipseElement(element));
+            }
+        }
+        return arr;
+    }
+    
+    
+    Array<json> getTextComponents(){
+        Array<json> ComponentArray = {};
+        for (auto &element: j){
+            std::string typeOfJSONElement = element["type"];
+            if(typeOfJSONElement == "component"){
+                std::string typeOfComponent = element["component_type"];
+                if(typeOfComponent == "TextButton"){
+                    ComponentArray.add(element);
+                }
+            }
+        }
+        return ComponentArray;
+    }
+    
+    
 private:
-    enum hawkins_types{
-        painted_text,
-        drawing_component
-    };
     
     std::string str;
     json j;
     bool str_to_json = false;
-protected:
-    paintAttrs generatePaintTextElement(json);
-    paintAttrs generatePaintRectElement(json);
-    paintAttrs generatePaintEllipseElement(json);
-    
 };
+
+
+
+
 
 //==============================================================================
 /*
@@ -84,7 +187,8 @@ public:
     
 private:
     hawkins jsonElements;
-    
+    Array<json> ComponentArray;
+    OwnedArray<TextButton> textButtonArray;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };

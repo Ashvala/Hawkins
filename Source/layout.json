@@ -1,106 +1,179 @@
 {
     "text_obj": {
-		"type": "painted_text",
-		"position": {
-            "x": 10,
-            "y": 10
-        },
-		"size": {
-            "width": 800,
-            "height": 20
-        },
-		"font": "Avenir Heavy",
-		"colour": [255, 255, 255],
-		"text": "Hello, Hawkins",
-		"font-size": 36.0
-	},
-    "text_obj2": {
         "type": "painted_text",
         "position": {
-            "x":10,
-            "y":30
+            "x": 30,
+            "y": 20
         },
         "size": {
             "width": 800,
-            "height":100
+            "height": 20
+        },
+        "font": "Avenir Heavy",
+        "colour": [255, 255, 255],
+        "text": "Hello, Hawkins",
+        "font-size": 36.0
+    },
+
+    "text_obj2": {
+        "type": "painted_text",
+        "position": {
+            "x": 30,
+            "y": 20
+        },
+        "size": {
+            "width": 800,
+            "height": 100
         },
         "font": "Avenir Book",
         "colour": [255, 255, 255],
         "text": "This is a test to make sure that everything works perfectly. This uses a JSON file to define the layout of this app",
         "font-size": 20.0
     },
+
     "text_obj3": {
         "type": "painted_text",
         "position": {
-            "x":10,
-            "y":120
+            "x": 30,
+            "y": 120
         },
         "size": {
-            "width":800,
-            "height":40
+            "width": 800,
+            "height": 40
         },
         "font": "Gill Sans",
         "colour": [255, 255, 255],
         "text": "Juce-y, huh?",
-        "font-size": 20.0
+        "font-size": 28.0
     },
+
     "text_obj4": {
         "type": "painted_text",
         "position": {
-            "x":10,
-            "y":200
+            "x": 30,
+            "y": 200
         },
         "size": {
-            "width":800,
-            "height":40
+            "width": 800,
+            "height": 40
         },
-        "font": "Gill Sans",
+        "font": "Avenir",
         "colour": [255, 255, 255],
         "text": "Here's a rectangle...",
         "font-size": 20.0
     },
+
     "rectangle1": {
         "type": "painted_rect",
         "position": {
-            "x":0,
-            "y":200
+            "x": 0,
+            "y": 200
         },
         "size": {
-            "width":800,
-            "height":100
+            "width": 800,
+            "height": 100
         },
         "colour": [255, 255, 255]
     },
+
+    "rectangle2": {
+        "type": "painted_rect",
+        "position": {
+            "x": 400,
+            "y": 200
+        },
+        "size": {
+            "width": 400,
+            "height": 100
+        },
+        "colour": [127, 127, 127]
+    },
+
     "text_obj5": {
         "type": "painted_text",
         "position": {
-            "x":10,
-            "y":300
+            "x": 430,
+            "y": 200
         },
         "size": {
-            "width":800,
-            "height":40
+            "width": 800,
+            "height": 40
         },
-        "font": "Gill Sans",
+        "font": "Avenir Next",
+        "colour": [255, 255, 255],
+        "text": "Here's another rectangle?",
+        "font-size": 20.0
+    },
+
+    "text_obj6": {
+        "type": "painted_text",
+        "position": {
+            "x": 30,
+            "y": 300
+        },
+        "size": {
+            "width": 800,
+            "height": 40
+        },
+        "font": "Avenir Next",
         "colour": [255, 255, 255],
         "text": "Here's an ellipse",
         "font-size": 20.0
     },
+
     "ellipse": {
         "type": "painted_ellipse",
         "position": {
-            "x":10,
-            "y":340
+            "x": 30,
+            "y": 340
         },
         "size": {
-            "width":100,
-            "height":100
+            "width": 100,
+            "height": 100
         },
         "colour": [255, 255, 255]
     },
-    "component1":{
+    "text_obj7": {
+        "type": "painted_text",
+        "position": {
+            "x": 430,
+            "y": 300
+        },
+        "size": {
+            "width": 800,
+            "height": 40
+        },
+        "font": "Avenir Next",
+        "colour": [255, 255, 255],
+        "text": "Here's a button",
+        "font-size": 20.0
+    },
+    "component1": {
         "type": "component",
         "component_type": "TextButton",
-        "name": "openButton"
+        "name": "open button",
+        "callback-function": "openButtonPressed",
+        "position": {
+            "x": 430,
+            "y": 340
+        },
+        "size": {
+            "width": 100,
+            "height": 100
+        }
+    },
+    "component2": {
+        "type": "component",
+        "component_type": "TextButton",
+        "name": "Another Button",
+        "callback-function": "Another ButtonPressed",
+        "position": {
+            "x": 30,
+            "y": 540
+        },
+        "size": {
+            "width": 100,
+            "height": 30
+        }
     }
 }
