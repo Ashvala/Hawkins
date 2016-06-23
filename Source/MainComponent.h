@@ -155,6 +155,30 @@ public:
         }
         return ComponentArray;
     }
+    void renderGraphics(Graphics &g){
+        //array of paint arrays.
+        Array<paintAttrs> arr(this->getPaintableElements());
+        //iterate through array
+        for (paintAttrs paintableElement: arr)
+        {
+            if(paintableElement.type == "text")
+            {
+                g.setFont(paintableElement.font);
+                g.setColour(paintableElement.color);
+                g.drawText(paintableElement.text, paintableElement.x,paintableElement.y, paintableElement.width, paintableElement.height, 1, 1);
+            }
+            if(paintableElement.type == "rect")
+            {
+                g.setColour(paintableElement.color);
+                g.drawRect(paintableElement.x, paintableElement.y, paintableElement.width, paintableElement.height);
+            }
+            if(paintableElement.type == "ellipse")
+            {
+                g.setColour(paintableElement.color);
+                g.drawEllipse((float) paintableElement.x, (float) paintableElement.y, (float) paintableElement.width, (float)paintableElement.height,1.0);
+            }
+        }
+    }
     
     
 private:

@@ -12,7 +12,7 @@
         "font": "Avenir Heavy",
         "colour": [255, 255, 255],
         "text": "Hello, Hawkins",
-        "font-size": 36.0
+        "font-size": 48.0
     },
 
     "text_obj2": {
@@ -47,62 +47,30 @@
         "font-size": 28.0
     },
 
-    "text_obj4": {
-        "type": "painted_text",
-        "position": {
-            "x": 30,
-            "y": 200
-        },
-        "size": {
-            "width": 800,
-            "height": 40
-        },
-        "font": "Avenir",
-        "colour": [255, 255, 255],
-        "text": "Here's a rectangle...",
-        "font-size": 20.0
-    },
-
     "rectangle1": {
         "type": "painted_rect",
         "position": {
             "x": 0,
-            "y": 200
+            "y": 90
         },
         "size": {
-            "width": 800,
-            "height": 100
+            "width": 1152,
+            "height": 1
         },
-        "colour": [255, 255, 255]
+        "colour": [100, 100, 100]
     },
 
     "rectangle2": {
         "type": "painted_rect",
         "position": {
-            "x": 400,
-            "y": 200
+            "x": 0,
+            "y": 90
         },
         "size": {
-            "width": 400,
-            "height": 100
+            "width": 576,
+            "height": 630
         },
         "colour": [127, 127, 127]
-    },
-
-    "text_obj5": {
-        "type": "painted_text",
-        "position": {
-            "x": 430,
-            "y": 200
-        },
-        "size": {
-            "width": 800,
-            "height": 40
-        },
-        "font": "Avenir Next",
-        "colour": [255, 255, 255],
-        "text": "Here's another rectangle?",
-        "font-size": 20.0
     },
 
     "text_obj6": {
