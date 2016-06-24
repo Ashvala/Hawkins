@@ -17,6 +17,25 @@
 using json = nlohmann::json;
 
 
+struct paintAttrs{
+    std::string type;
+    int x;
+    int y;
+    int width;
+    int height;
+    Colour color;
+    std::string text;
+    Font font;
+};
+
+struct animatableProperties{
+    std::string componentName;
+    std::string animationType;
+    Point<int> finalPosition;
+    float duration;
+};
+
+
 class buttonCallbacks
 {
 public:
@@ -43,7 +62,12 @@ public:
     static void anotherButtonPressed(){
         std::cout << "Hello!" << std::endl;
     }
-    
+    static void funct(){
+        std::cout<< "function? " <<std::endl;
+    }
+    static void MoveButtonPressed(animatableProperties ap, Component* c){
+        
+    }
 };
 
 /**
@@ -59,16 +83,6 @@ public:
  */
 
 
-struct paintAttrs{
-    std::string type;
-    int x;
-    int y;
-    int width;
-    int height;
-    Colour color;
-    std::string text;
-    Font font;
-};
 
 class hawkins{
 protected:
@@ -182,22 +196,38 @@ public:
     }
     
     
+    /**
+     @brief  This function prints out Text Components
+     
+     @return Array of type "json"
+     */
+    
     Array<json> getTextComponents()
     {
         Array<json> TextComponentArray = {};
-        
-        for (auto &element: j)
+        Array<json> Components = getComponents();
+        for (auto &element: Components)
         {
-            std::string typeOfJSONElement = element["type"];
-            if(typeOfJSONElement == "component"){
-                std::string typeOfComponent = element["component_type"];
-                if(typeOfComponent == "TextButton"){
-                    TextComponentArray.add(element);
-                }
+            std::string typeOfComponent = element["component_type"];
+            if(typeOfComponent == "TextButton"){
+                TextComponentArray.add(element);
             }
         }
         
         return TextComponentArray;
+    }
+    Array<json> getSliderComponents()
+    {
+        Array<json> SliderComponentArray = {};
+        Array<json> Components = getComponents();
+        for (auto &element: Components)
+        {
+            std::string typeOfComponent = element["component_type"];
+            if(typeOfComponent == "Slider"){
+                SliderComponentArray.add(element);
+            }
+        }
+        return SliderComponentArray;
     }
     
     Array<json> getComponents()
@@ -205,11 +235,33 @@ public:
         Array<json> ComponentArray = {};
         for (auto &element: j)
         {
-            
+            std::string typeOfJSONElement = element["type"];
+            if(typeOfJSONElement == "component"){
+                ComponentArray.add(element);
+            }
         }
+        return ComponentArray;
     }
     
-    
+    Array<animatableProperties> getAnimations(){
+        Array<animatableProperties> AnimationPropArray = {};
+        for (auto &element:j)
+        {
+            std::string type = element["type"];
+            if (type == "animated"){
+                animatableProperties tempStruct;
+                tempStruct.componentName = element["component_to_animate"];
+                tempStruct.animationType = element["animation_type"];
+                if(tempStruct.animationType == "move"){
+                    tempStruct.finalPosition = Point<int>(element["final_position"][0], element["final_position"][1]);
+                }
+                tempStruct.duration = element["duration"];
+                AnimationPropArray.add(tempStruct);
+            }
+        }
+        return AnimationPropArray;
+        
+    }
     void renderGraphics(Graphics &g){
         //array of paint arrays.
         Array<paintAttrs> arr(this->getPaintableElements());
@@ -242,6 +294,7 @@ private:
     std::string str;
     json j;
     bool str_to_json = false;
+    std::map<std::string, Component*> componentMap;
 };
 
 
@@ -252,7 +305,10 @@ private:
  This component lives inside our window, and this is where you should put all
  your controls and content.
  */
-class MainContentComponent   : public Component, public Button::Listener, public buttonCallbacks
+class MainContentComponent   : public Component,
+public Button::Listener,
+public buttonCallbacks,
+public Slider::Listener
 {
     
 public:
@@ -263,17 +319,35 @@ public:
     void paint (Graphics&);
     void resized();
     void buttonClicked (Button*);
+    void sliderValueChanged (Slider*);
+    void moveButtonPressed();
+    
     
     
 private:
     
-    hawkins jsonElements;
+    //hawkins object
+    hawkins Hawkins;
+    
+    // all the arrays
     Array<json> TextButtonComponentArray;
+    Array<json> ComponentArray;
     OwnedArray<Button> textButtonArray;
+    OwnedArray<Slider> SliderComponents;
+    Array<animatableProperties> AnimationPropArray;
+    void (MainContentComponent::*myFnc)();
+    // all the maps
     typedef void(*func)();
     std::map<std::string, func> hawkinsMap;
-    void autoMapFunctionsFromJSON();
+    std::map<std::string, Component*> componentMap;
+    std::map<std::string, ComponentAnimator*> componentAnimatorMap;
+    
+    // all the functions
+    void defaultMapFunctions();
+    void generateComponentAnimators();
     void mapFunction(std::string s, func f);
+    
+    
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };
