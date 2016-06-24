@@ -14,10 +14,40 @@
 #include <fstream>
 #include <string>
 
+using json = nlohmann::json;
 
+
+class buttonCallbacks
+{
+public:
+    buttonCallbacks()
+    {
+        
+    }
+    
+    virtual ~buttonCallbacks(){
+        
+    }
+    static void openButtonPressed(){
+        
+        FileChooser chooser ("Select a Wave file to play...",
+                             File::nonexistent,
+                             "*.wav");
+        std::cout<<"Open Button pressed!" << std::endl;
+        if (chooser.browseForFileToOpen())
+        {
+            File file (chooser.getResult());
+            std::cout<<file.getFileName() << " Was selected to be opened!" <<std::endl;
+        }
+    }
+    static void anotherButtonPressed(){
+        std::cout << "Hello!" << std::endl;
+    }
+    
+};
 
 /**
- Structure to hold attributes to a paintable thing. 
+ Structure to hold attributes to a paintable thing.
  @param type - type
  @param x - x coordinate
  @param y - y coordinate
@@ -27,7 +57,8 @@
  @param text - text
  @param font - font
  */
-using json = nlohmann::json;
+
+
 struct paintAttrs{
     std::string type;
     int x;
@@ -44,6 +75,7 @@ protected:
     paintAttrs generatePaintTextElement(json element)
     {
         paintAttrs paintAttr;
+        
         paintAttr.type = "text";
         paintAttr.x = element["position"]["x"];
         paintAttr.y = element["position"]["y"];
@@ -52,34 +84,39 @@ protected:
         paintAttr.text = element["text"];
         paintAttr.color = Colour(element["colour"][0],element["colour"][1],element["colour"][2]);
         paintAttr.font = Font(element["font"], element["font-size"], 0);
+        
         return paintAttr;
     }
     
     paintAttrs generatePaintRectElement(json element)
     {
         paintAttrs paintAttr;
+        
         paintAttr.type = "rect";
         paintAttr.x = element["position"]["x"];
         paintAttr.y = element["position"]["y"];
         paintAttr.width = element["size"]["width"];
         paintAttr.height = element["size"]["height"];
         paintAttr.color = Colour(element["colour"][0],element["colour"][1],element["colour"][2]);
+        
         return paintAttr;
     }
     
     paintAttrs generatePaintEllipseElement(json element)
     {
         paintAttrs paintAttr;
+        
         paintAttr.type = "ellipse";
         paintAttr.x = element["position"]["x"];
         paintAttr.y = element["position"]["y"];
         paintAttr.width = element["size"]["width"];
         paintAttr.height = element["size"]["height"];
         paintAttr.color = Colour(element["colour"][0],element["colour"][1],element["colour"][2]);
+        
         return paintAttr;
     }
-    
 public:
+    
     /**
      @brief Constructor
      @param url URL
@@ -93,7 +130,7 @@ public:
         this->parse();
     }
     
-    ~hawkins()
+    virtual ~hawkins()
     {
         //destructor!
         //A clever joke about Shiva being the destroyer of worlds goes here, perhaps?
@@ -106,9 +143,10 @@ public:
     {
         
         j = json::parse(str);
-        if (str_to_json == false){
+        
+        if (str_to_json == false)
             str_to_json = true;
-        }
+        
     }
     
     /**
@@ -122,6 +160,7 @@ public:
     Array<paintAttrs> getPaintableElements()
     {
         Array<paintAttrs> arr = {};
+        
         for (auto &element: j)
         {
             std::string typeOfJSONElement = element["type"];
@@ -138,23 +177,39 @@ public:
                 arr.add(generatePaintEllipseElement(element));
             }
         }
+        
         return arr;
     }
     
     
-    Array<json> getTextComponents(){
-        Array<json> ComponentArray = {};
-        for (auto &element: j){
+    Array<json> getTextComponents()
+    {
+        Array<json> TextComponentArray = {};
+        
+        for (auto &element: j)
+        {
             std::string typeOfJSONElement = element["type"];
             if(typeOfJSONElement == "component"){
                 std::string typeOfComponent = element["component_type"];
                 if(typeOfComponent == "TextButton"){
-                    ComponentArray.add(element);
+                    TextComponentArray.add(element);
                 }
             }
         }
-        return ComponentArray;
+        
+        return TextComponentArray;
     }
+    
+    Array<json> getComponents()
+    {
+        Array<json> ComponentArray = {};
+        for (auto &element: j)
+        {
+            
+        }
+    }
+    
+    
     void renderGraphics(Graphics &g){
         //array of paint arrays.
         Array<paintAttrs> arr(this->getPaintableElements());
@@ -181,6 +236,7 @@ public:
     }
     
     
+    
 private:
     
     std::string str;
@@ -191,28 +247,33 @@ private:
 
 
 
-
 //==============================================================================
 /*
  This component lives inside our window, and this is where you should put all
  your controls and content.
  */
-class MainContentComponent   : public Component, public Button::Listener
+class MainContentComponent   : public Component, public Button::Listener, public buttonCallbacks
 {
     
 public:
     //==============================================================================
     
     MainContentComponent();
-    ~MainContentComponent();
-    
+    ~MainContentComponent();    
     void paint (Graphics&);
     void resized();
     void buttonClicked (Button*);
+    
+    
 private:
+    
     hawkins jsonElements;
-    Array<json> ComponentArray;
+    Array<json> TextButtonComponentArray;
     OwnedArray<Button> textButtonArray;
+    typedef void(*func)();
+    std::map<std::string, func> hawkinsMap;
+    void autoMapFunctionsFromJSON();
+    void mapFunction(std::string s, func f);
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };

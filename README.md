@@ -50,3 +50,25 @@ The enumeration of types is as follows:
 `painted_text` allows you to additionally change the font and what the text is.
 
 #### Components:
+
+Currently, the one component that is supported is the Button. You can add buttons to your display.
+
+Currently supported actions are:
+- `openButtonPressed`, and
+- `AnotherButtonPressed`
+
+If you want to add custom callbacks, make sure you define them and call the `mapFunction` function that I've included. `mapFunction` maps a string to a function of type `void` with no inputs using `std::map`.
+
+The map type is:
+
+```c++
+typedef void(*func)();
+
+std::map<std::string, func> hawkinsMap;
+```
+
+#### TO-DO:
+
+- ### MORE DOCUMENTATION!
+- SFINAE tests to make sure function exists.
+- Table lookup.

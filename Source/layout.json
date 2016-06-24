@@ -31,22 +31,6 @@
         "font-size": 20.0
     },
 
-    "text_obj3": {
-        "type": "painted_text",
-        "position": {
-            "x": 30,
-            "y": 120
-        },
-        "size": {
-            "width": 800,
-            "height": 40
-        },
-        "font": "Gill Sans",
-        "colour": [255, 255, 255],
-        "text": "Juce-y, huh?",
-        "font-size": 28.0
-    },
-
     "rectangle1": {
         "type": "painted_rect",
         "position": {
@@ -57,10 +41,30 @@
             "width": 1152,
             "height": 1
         },
-        "colour": [100, 100, 100]
+        "colour": [100, 100, 100],
+        "comment": "This is a border"
     },
 
-    "rectangle2": {
+
+    "text_obj3": {
+        "type": "painted_text",
+        "position": {
+            "x": 30,
+            "y": 100
+        },
+        "size": {
+            "width": 800,
+            "height": 40
+        },
+        "font": "Avenir Light",
+        "colour": [255, 255, 255],
+        "text": "Juce-y, huh?",
+        "font-size": 28.0
+    },
+
+
+
+    "grid1": {
         "type": "painted_rect",
         "position": {
             "x": 0,
@@ -130,18 +134,21 @@
             "height": 100
         }
     },
-    "component2": {
+    "component3": {
         "type": "component",
-        "component_type": "TextButton",
-        "name": "Another Button",
-        "callback-function": "AnotherButtonPressed",
+        "component_type": "MidiKeyboardComponent",
+        "name": "midiKeys",
         "position": {
-            "x": 30,
-            "y": 540
+            "x": 430,
+            "y": 120
         },
         "size": {
             "width": 100,
-            "height": 30
-        }
+            "height": 600
+        },
+        "range": [60, 72],
+        "orientation": "vertical"
     }
+
+
 }
