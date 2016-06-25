@@ -16,24 +16,6 @@
 
 using json = nlohmann::json;
 
-struct paintAttrs{
-    std::string type;
-    int x;
-    int y;
-    int width;
-    int height;
-    Colour color;
-    std::string text;
-    Font font;
-};
-
-struct animatableProperties{
-    std::string componentName;
-    std::string animationType;
-    Point<int> finalPosition;
-    float duration;
-};
-
 
 /**
  Structure to hold attributes to a paintable thing.
@@ -46,6 +28,27 @@ struct animatableProperties{
  @param text - text
  @param font - font
  */
+
+struct paintAttrs
+{
+    std::string type;
+    int x;
+    int y;
+    int width;
+    int height;
+    Colour color;
+    std::string text;
+    Font font;
+};
+
+struct animatableProperties
+{
+    std::string componentName;
+    std::string animationType;
+    Point<int> finalPosition;
+    float duration;
+};
+
 
 
 
@@ -183,6 +186,11 @@ public:
         
         return TextComponentArray;
     }
+    /**
+     @brief  This function prints out the Slider Components
+     
+     @return Array of type "json"
+     */
     Array<json> getSliderComponents()
     {
         Array<json> SliderComponentArray = {};
@@ -197,6 +205,12 @@ public:
         return SliderComponentArray;
     }
     
+    /**
+     @brief  This function prints out all the Components
+     
+     @return Array of type "json"
+     */
+    
     Array<json> getComponents()
     {
         Array<json> ComponentArray = {};
@@ -209,6 +223,23 @@ public:
         }
         return ComponentArray;
     }
+    
+    Array<json> getComponents(std::string type){
+        Array<json> ComponentArray;
+        if (type == "TextButton"){
+            ComponentArray = getTextComponents();
+        }
+        if (type == "Slider"){
+            ComponentArray = getSliderComponents();
+        }
+        return ComponentArray;
+    }
+    
+    /**
+     @brief  This function prints out Animation properties
+     
+     @return Array of type "json"
+     */
     
     Array<animatableProperties> getAnimations(){
         Array<animatableProperties> AnimationPropArray = {};
@@ -236,6 +267,12 @@ public:
         return AnimationPropArray;
         
     }
+    
+    /**
+     @brief This function draws stuff.
+     @param Graphics &g : Graphics context from the main content component.
+     */
+    
     void renderGraphics(Graphics &g){
         //array of paint arrays.
         Array<paintAttrs> arr(this->getPaintableElements());
@@ -276,7 +313,6 @@ private:
     std::string str;
     json j;
     bool str_to_json = false;
-    std::map<std::string, Component*> componentMap;
 };
 
 

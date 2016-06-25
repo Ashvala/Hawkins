@@ -87,7 +87,6 @@ void MainContentComponent::defaultMapFunctions()
  @param std::string s - String
  @param func f - Function pointer f.
  
- 
  */
 void MainContentComponent::mapFunction(std::string s, func f)
 {
@@ -99,13 +98,6 @@ void MainContentComponent::mapFunction(std::string s, func f)
  
  @param std::string s - String
  @param std::function<void()> f - Function f. Use a lambda. 
- 
- Example: 
- 
- ```
- 
- ```
- 
  
  */
 

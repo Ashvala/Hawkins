@@ -40,8 +40,6 @@ public:
     virtual void funct(){
         std::cout<< "function? " <<std::endl;
     }
-    static void MoveButtonPressed(){
-    }
 };
 
 //==============================================================================
@@ -72,7 +70,6 @@ private:
     
     //hawkins object
     hawkins Hawkins;
-    
     // all the arrays
     Array<json> TextButtonComponentArray;
     Array<json> ComponentArray;

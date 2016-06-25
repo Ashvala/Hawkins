@@ -61,14 +61,61 @@ If you want to add custom callbacks, make sure you define them and call the `map
 
 The map type is:
 
-```c++
+``` c++
 typedef void(*func)();
 
-std::map<std::string, func> hawkinsMap;
+std::map<std::string, std::function<void()>> hawkinsMap;
+
 ```
+
+Using `func` as a function pointer with Hawkins map can be done as follows:
+
+```c++
+ mapFunction("anotherButtonPressed", buttonCallbacks::anotherButtonPressed);
+```
+
+Do keep in mind that using a function pointer can be limiting as you need to make sure that the function you're mapping it to is static.
+
+However, on the flipside, you can use lambdas (yay!) to map functions, even within your own class:
+
+```c++
+mapFunction("helloworld",[&]{MainContentComponent::moveButtonPressed();});
+```
+
+The equivalent of this without the mapFunction sub routine would be:
+
+```c++
+hawkinsMap["helloworld"] = [&]{MainContentComponent::moveButtonPressed();};
+```
+
+### Component Animations:
+
+You can animate components that you add.
+
+An example of this from the Layout file is:
+
+```json
+"animation1":{
+    "type": "animated",
+    "component_to_animate": "open button",
+    "animation_type": "move",
+    "duration": 3000,
+    "final_position": [400,400]
+}
+```
+
+This allows you to move a component you've defined in the JSON file from wherever it was to wherever you want.
+
+I will add a "fade" option soon.
+
+### Future:
+
+I think this can be used as an equivalent to Interface Builder in macOS and iOS SDKs. I will probably include an example of that in this project.
+
+I am also going to look at better ways of creating a better mechanism to do things, without messing with MainContentComponent.
+
+A fun exercise would be to try and create a JIT type thing where you update a JSON file and it reflects the changes on the screen.
 
 #### TO-DO:
 
-- ### MORE DOCUMENTATION!
 - SFINAE tests to make sure function exists.
-- Table lookup.
