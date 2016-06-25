@@ -941,6 +941,7 @@
 		C117BEF839E3FE0964793A3E /* setup_44p51.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = setup_44p51.h; path = "../../../../Downloads/JUCE/modules/juce_audio_formats/codecs/oggvorbis/libvorbis-1.3.2/lib/modes/setup_44p51.h"; sourceTree = SOURCE_ROOT; };
 		C15CE33D8F3FE06CD3138D0B /* juce_CatmullRomInterpolator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_CatmullRomInterpolator.h; path = ../../../../Downloads/JUCE/modules/juce_audio_basics/effects/juce_CatmullRomInterpolator.h; sourceTree = SOURCE_ROOT; };
 		C1FC9332D65AC992401157A4 /* juce_AudioFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_AudioFormat.h; path = ../../../../Downloads/JUCE/modules/juce_audio_formats/format/juce_AudioFormat.h; sourceTree = SOURCE_ROOT; };
+		C203897B1D1F25AD006B0042 /* Hawkins.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Hawkins.hpp; path = ../../Source/Hawkins.hpp; sourceTree = "<group>"; };
 		C232473DA23027A6A1E5730A /* juce_Desktop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_Desktop.h; path = ../../../../Downloads/JUCE/modules/juce_gui_basics/components/juce_Desktop.h; sourceTree = SOURCE_ROOT; };
 		C241DAD4817BE5E3662AB913 /* juce_ReferenceCountedObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_ReferenceCountedObject.h; path = ../../../../Downloads/JUCE/modules/juce_core/memory/juce_ReferenceCountedObject.h; sourceTree = SOURCE_ROOT; };
 		C2AA9E9A302CA39BB0415BE7 /* juce_Value.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_Value.h; path = ../../../../Downloads/JUCE/modules/juce_data_structures/values/juce_Value.h; sourceTree = SOURCE_ROOT; };
@@ -3147,6 +3148,7 @@
 			children = (
 				3C85795FFD13C3226A65E42C /* MainComponent.cpp */,
 				CB987E200F91C3E32DA8E503 /* MainComponent.h */,
+				C203897B1D1F25AD006B0042 /* Hawkins.hpp */,
 				4FC6C5BD1DAC79FDB61DA639 /* Main.cpp */,
 			);
 			name = Source;
@@ -3498,7 +3500,7 @@
 		A9E0AE3B0B635D97FAE1E604 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
@@ -3530,7 +3532,7 @@
 		DD6D930B3D1BDDFA86E40669 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";

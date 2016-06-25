@@ -24,10 +24,11 @@ MainContentComponent::MainContentComponent(): Hawkins("../../../../Source/layout
         addAndMakeVisible(t);
         
         t->setButtonText(child["name"]);
-        t->setTopLeftPosition(child["position"]["x"], child["position"]["y"]);
-        t->setBounds(child["position"]["x"], child["position"]["y"], child["size"]["width"], child["size"]["height"]);
+        t->setBounds(child["position"]["x"], child["position"]["y"],
+                     child["size"]["width"], child["size"]["height"]);
+        
         t->addListener(this);
-        //        std::cout<<child[<<std::endl;
+        
         componentMap[child["name"]] = t;
         textButtonArray.add(t);
     }
@@ -57,7 +58,8 @@ void MainContentComponent::resized()
         json child_data = TextButtonComponentArray[i];
         json child_data_position = child_data["position"];
         json child_data_size = child_data["size"];
-        textButtonArray[i]->setBounds(child_data_position["x"], child_data_position["y"], child_data_size["width"], child_data_size["height"]);
+        textButtonArray[i]->setBounds(child_data_position["x"], child_data_position["y"],
+                                      child_data_size["width"], child_data_size["height"]);
     }
 }
 
@@ -72,21 +74,48 @@ void MainContentComponent::buttonClicked (Button* button)
 
 void MainContentComponent::defaultMapFunctions()
 {
-    mapFunction("openButtonPressed", buttonCallbacks::openButtonPressed);
-    mapFunction("anotherButtonPressed", buttonCallbacks::anotherButtonPressed);
-    //    void *f = this->moveButtonPressed;
-    myFnc = &MainContentComponent::moveButtonPressed;
-    mapFunction("helloworld", func(&myFnc));
-    //    hawkinsMap["helloworld", func(&MainContentComponent:moveButtonPressed)]
-    //    std::cout << hawkinsMap["helloworld"] << " Hello world?" <<std::endl;
+    mapFunction("openButtonPressed", [&]{buttonCallbacks::openButtonPressed();});
+    mapFunction("anotherButtonPressed", buttonCallbacks::anotherButtonPressed); // map as fn ptr
+    mapFunction("helloworld",[&]{MainContentComponent::moveButtonPressed();}); // map as lambda
 }
 
+
+
+/**
+ @brief Maps a string s to a function pointer f.
+ 
+ @param std::string s - String
+ @param func f - Function pointer f.
+ 
+ 
+ */
 void MainContentComponent::mapFunction(std::string s, func f)
 {
     hawkinsMap[s] = f;
 }
 
-void MainContentComponent::sliderValueChanged (Slider* slider) {
+/**
+ @brief Maps a string s to a function pointer f.
+ 
+ @param std::string s - String
+ @param std::function<void()> f - Function f. Use a lambda. 
+ 
+ Example: 
+ 
+ ```
+ 
+ ```
+ 
+ 
+ */
+
+void MainContentComponent::mapFunction(std::string s, std::function<void()> f)
+{
+    hawkinsMap[s] = f;
+}
+
+void MainContentComponent::sliderValueChanged (Slider* slider)
+{
     
 }
 
@@ -94,14 +123,20 @@ void MainContentComponent::generateComponentAnimators(){
     for (auto &animators: AnimationPropArray){
         ComponentAnimator *ca = new ComponentAnimator();
         componentAnimatorMap[animators.componentName] = ca;
-        
-        Rectangle<int> nRectangle = Rectangle<int>(animators.finalPosition.x, animators.finalPosition.y, componentMap[animators.componentName]->getWidth(), componentMap[animators.componentName]->getHeight());
-        componentAnimatorMap[animators.componentName]->animateComponent(componentMap[animators.componentName], nRectangle, 1.0f, animators.duration, 0, 1.0, 1.0);
     }
 }
 
-void MainContentComponent::moveButtonPressed(){
+void MainContentComponent::moveButtonPressed()
+{
+    animatableProperties animators = AnimationPropArray[0];
+    Rectangle<int> nRectangle = Rectangle<int>(animators.finalPosition.x, animators.finalPosition.y,
+                                               componentMap[animators.componentName]->getWidth(),
+                                               componentMap[animators.componentName]->getHeight());
     
+    componentAnimatorMap[animators.componentName]->animateComponent(componentMap[animators.componentName],
+                                                                    nRectangle, 1.0f,
+                                                                    animators.duration, 0, 1.0, 1.0);
 }
+
 
 

@@ -62,8 +62,6 @@
         "font-size": 28.0
     },
 
-
-
     "grid1": {
         "type": "painted_rect",
         "position": {
@@ -75,6 +73,37 @@
             "height": 670
         },
         "colour": [127, 127, 127]
+    },
+
+    "text_obj4": {
+        "type": "painted_text",
+        "position": {
+            "x": 30,
+            "y": 150
+        },
+        "size": {
+            "width": 800,
+            "height": 40
+        },
+        "font": "Avenir Light",
+        "colour": [255, 255, 255],
+        "text": "This is a pretty great way of prototyping interfaces on the fly",
+        "font-size": 20.0
+    },
+    "text_obj5": {
+        "type": "painted_text",
+        "position": {
+            "x": 30,
+            "y": 180
+        },
+        "size": {
+            "width": 800,
+            "height": 40
+        },
+        "font": "Avenir Light",
+        "colour": [255, 255, 255],
+        "text": "Especially because JSON is a fairly human parsable way of notating data.",
+        "font-size": 20.0
     },
 
     "text_obj6": {
@@ -151,7 +180,7 @@
     "component3": {
         "type": "component",
         "component_type": "TextButton",
-        "name": "Test Button",
+        "name": "Move the Open Button!",
         "callback-function": "helloworld",
         "position": {
             "x": 430,
@@ -163,12 +192,12 @@
         }
     },
 
-    "animated1":{
+    "animation1":{
         "type": "animated",
         "component_to_animate": "open button",
         "animation_type": "move",
         "duration": 3000,
-        "final_position": [800,400]
+        "final_position": [400,400]
     }
 
 }
