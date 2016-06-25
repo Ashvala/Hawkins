@@ -9,7 +9,7 @@
 #ifndef Hawkins_hpp
 #define Hawkins_hpp
 #include "../JuceLibraryCode/JuceHeader.h"
-#include <json.hpp>
+#include "json.hpp"
 #include <fstream>
 #include <string>
 

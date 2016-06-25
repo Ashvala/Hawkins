@@ -31,6 +31,7 @@
 		ADE97BE050C25D4699E0E7EE /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF0C4730F8EFE8921CE2FC8A /* CoreAudio.framework */; };
 		B5B83D953881AEC8A92FEBEA /* juce_core.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5CCEC3052354A3FD142362D8 /* juce_core.mm */; };
 		BB95E318E75E0B141B0BF135 /* juce_audio_basics.mm in Sources */ = {isa = PBXBuildFile; fileRef = E38DA16BEBF285DC446163FD /* juce_audio_basics.mm */; };
+		C281CE551D1F4DF000764F51 /* json.hpp in Sources */ = {isa = PBXBuildFile; fileRef = C281CE541D1F4DE500764F51 /* json.hpp */; };
 		C4632D380C5DC0C271A636AE /* juce_audio_devices.mm in Sources */ = {isa = PBXBuildFile; fileRef = B167D2E4AAAC1534BE9430EF /* juce_audio_devices.mm */; };
 		CA0AF8FF830C6E1D87B5296B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0D888DBDE8077D54CC34E4 /* WebKit.framework */; };
 		CB5783086E023BF1BA2F4F2D /* RecentFilesMenuTemplate.nib in Resources */ = {isa = PBXBuildFile; fileRef = 1B2AD3DC836B193AB5CBC6A4 /* RecentFilesMenuTemplate.nib */; };
@@ -944,6 +945,7 @@
 		C203897B1D1F25AD006B0042 /* Hawkins.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Hawkins.hpp; path = ../../Source/Hawkins.hpp; sourceTree = "<group>"; };
 		C232473DA23027A6A1E5730A /* juce_Desktop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_Desktop.h; path = ../../../../Downloads/JUCE/modules/juce_gui_basics/components/juce_Desktop.h; sourceTree = SOURCE_ROOT; };
 		C241DAD4817BE5E3662AB913 /* juce_ReferenceCountedObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_ReferenceCountedObject.h; path = ../../../../Downloads/JUCE/modules/juce_core/memory/juce_ReferenceCountedObject.h; sourceTree = SOURCE_ROOT; };
+		C281CE541D1F4DE500764F51 /* json.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = json.hpp; path = ../../Source/json.hpp; sourceTree = "<group>"; };
 		C2AA9E9A302CA39BB0415BE7 /* juce_Value.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_Value.h; path = ../../../../Downloads/JUCE/modules/juce_data_structures/values/juce_Value.h; sourceTree = SOURCE_ROOT; };
 		C2AF6A46F228A7835EDDE49F /* jdphuff.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jdphuff.c; path = ../../../../Downloads/JUCE/modules/juce_graphics/image_formats/jpglib/jdphuff.c; sourceTree = SOURCE_ROOT; };
 		C30A82B3525FD553FA595DEC /* juce_AudioFormatManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_AudioFormatManager.cpp; path = ../../../../Downloads/JUCE/modules/juce_audio_formats/format/juce_AudioFormatManager.cpp; sourceTree = SOURCE_ROOT; };
@@ -3147,6 +3149,7 @@
 			isa = PBXGroup;
 			children = (
 				3C85795FFD13C3226A65E42C /* MainComponent.cpp */,
+				C281CE541D1F4DE500764F51 /* json.hpp */,
 				CB987E200F91C3E32DA8E503 /* MainComponent.h */,
 				C203897B1D1F25AD006B0042 /* Hawkins.hpp */,
 				4FC6C5BD1DAC79FDB61DA639 /* Main.cpp */,
@@ -3434,6 +3437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C281CE551D1F4DF000764F51 /* json.hpp in Sources */,
 				9CB416493A34FD7273FA1484 /* MainComponent.cpp in Sources */,
 				3FE10E7B28665E4223204DEE /* Main.cpp in Sources */,
 				BB95E318E75E0B141B0BF135 /* juce_audio_basics.mm in Sources */,
@@ -3519,7 +3523,6 @@
 					../../JuceLibraryCode,
 					../../../../Downloads/JUCE/modules,
 					"$(inherited)",
-					/usr/local/include,
 				);
 				INFOPLIST_FILE = "Info-App.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -3552,7 +3555,6 @@
 					../../JuceLibraryCode,
 					../../../../Downloads/JUCE/modules,
 					"$(inherited)",
-					/usr/local/include,
 				);
 				INFOPLIST_FILE = "Info-App.plist";
 				INSTALL_PATH = "$(HOME)/Applications";

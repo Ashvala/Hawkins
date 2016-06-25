@@ -14,8 +14,8 @@ MainContentComponent::MainContentComponent(): Hawkins("../../../../Source/layout
 {
     
     setSize (1152, 768);
-    ComponentArray = Hawkins.getSliderComponents();
-    TextButtonComponentArray = Hawkins.getTextComponents();
+    ComponentArray = Hawkins.getComponents("Slider");
+    TextButtonComponentArray = Hawkins.getComponents("TextButton");
     
     for (auto &child: TextButtonComponentArray)
     {
