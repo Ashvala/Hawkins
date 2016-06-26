@@ -1,4 +1,16 @@
 {
+    "image":{
+        "type": "image",
+        "position":{
+            "x": 0,
+            "y": 0
+        },
+        "size":{
+            "width":1280,
+            "height": 800
+        },
+        "file-url": "/Library/Desktop Pictures/Yosemite 2.jpg"
+    },
     "text_obj": {
         "type": "painted_text",
         "position": {
@@ -14,7 +26,7 @@
         "text": "Hello, Hawkins",
         "font-size": 48.0
     },
-    
+
     "text_obj2": {
         "type": "painted_text",
         "position": {
@@ -30,7 +42,7 @@
         "text": "This is a test to make sure that everything works perfectly. This uses a JSON file to define the layout of this app",
         "font-size": 20.0
     },
-    
+
     "rectangle1": {
         "type": "painted_rect",
         "position": {
@@ -44,8 +56,8 @@
         "colour": [100, 100, 100],
         "comment": "This is a border"
     },
-    
-    
+
+
     "text_obj3": {
         "type": "painted_text",
         "position": {
@@ -61,7 +73,7 @@
         "text": "Juce-y, huh?",
         "font-size": 28.0
     },
-    
+
     "grid1": {
         "type": "painted_rect",
         "position": {
@@ -74,7 +86,7 @@
         },
         "colour": [127, 127, 127]
     },
-    
+
     "text_obj4": {
         "type": "painted_text",
         "position": {
@@ -105,7 +117,7 @@
         "text": "Especially because JSON is a fairly human parsable way of notating data.",
         "font-size": 20.0
     },
-    
+
     "text_obj6": {
         "type": "painted_text",
         "position": {
@@ -121,7 +133,7 @@
         "text": "Here's an ellipse",
         "font-size": 20.0
     },
-    
+
     "ellipse": {
         "type": "painted_ellipse",
         "position": {
@@ -191,7 +203,7 @@
             "height": 30
         }
     },
-    
+
     "animation1":{
         "type": "animated",
         "component_to_animate": "open button",
@@ -199,5 +211,5 @@
         "duration": 3000,
         "final_position": [400,400]
     }
-    
+
 }

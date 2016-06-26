@@ -27,6 +27,7 @@ using json = nlohmann::json;
  @param color - assigned color
  @param text - text
  @param font - font
+ @param fileURL - file
  */
 
 struct paintAttrs
@@ -39,6 +40,7 @@ struct paintAttrs
     Colour color;
     std::string text;
     Font font;
+    File fileURL;
 };
 
 struct animatableProperties
@@ -99,6 +101,20 @@ protected:
         
         return paintAttr;
     }
+    
+    paintAttrs generatePaintImageElement(json element)
+    {
+        paintAttrs paintAttr;
+        
+        paintAttr.type = "image";
+        paintAttr.x = element["position"]["x"];
+        paintAttr.y = element["position"]["y"];
+        paintAttr.width = element["size"]["width"];
+        paintAttr.height = element["size"]["height"];
+        std::string url = element["file-url"];
+        paintAttr.fileURL = File(url);
+        return paintAttr;
+    }
 public:
     
     /**
@@ -121,7 +137,6 @@ public:
         //A clever joke about Shiva being the destroyer of worlds goes here, perhaps?
     }
     void setURL(std::string url){
-        //        Hawkins("../../../../Source/layout.json")
         std::ifstream t(url);
         std::string content((std::istreambuf_iterator<char>(t)),
                             std::istreambuf_iterator<char>());
@@ -168,6 +183,10 @@ public:
             if(typeOfJSONElement == "painted_ellipse")
             {
                 arr.add(generatePaintEllipseElement(element));
+            }
+            if(typeOfJSONElement == "image")
+            {
+                arr.add(generatePaintImageElement(element));
             }
         }
         
@@ -314,7 +333,9 @@ public:
             }
             if(paintableElement.type == "image")
             {
-                
+                Image I = ImageFileFormat::loadFrom(paintableElement.fileURL);
+                g.drawImage(I, paintableElement.x, paintableElement.y, paintableElement.width,
+                            paintableElement.height,0,0, 1000, 1000);
             }
         }
         
