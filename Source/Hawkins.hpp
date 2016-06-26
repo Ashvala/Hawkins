@@ -160,7 +160,8 @@ public:
     /**
      @brief This function returns paintable elements in the json file.
      
-     This function takes the json object that you have and returns an array that contains elements of the "paintAttrs" type.
+     This function takes the json object that you have and returns an array that contains 
+     elements of the "paintAttrs" type.
      
      @return Array of type "paintAttrs".
      */
@@ -334,8 +335,9 @@ public:
             if(paintableElement.type == "image")
             {
                 Image I = ImageFileFormat::loadFrom(paintableElement.fileURL);
+
                 g.drawImage(I, paintableElement.x, paintableElement.y, paintableElement.width,
-                            paintableElement.height,0,0, 1000, 1000);
+                            paintableElement.height,0,0, I.getWidth(),I.getHeight());
             }
         }
         

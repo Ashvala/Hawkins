@@ -2,14 +2,14 @@
     "image":{
         "type": "image",
         "position":{
-            "x": 0,
-            "y": 0
+            "x": 630,
+            "y": 120
         },
         "size":{
-            "width":1280,
-            "height": 800
+            "width":300,
+            "height": 300
         },
-        "file-url": "/Library/Desktop Pictures/Yosemite 2.jpg"
+        "file-url": "/Library/User Pictures/Fun/Ying-Yang.png"
     },
     "text_obj": {
         "type": "painted_text",

@@ -32,7 +32,3 @@ void MainContentComponent::resized()
 {
     
 }
-
-
-
-
