@@ -14,7 +14,7 @@ MainContentComponent::MainContentComponent()
 {
     
     setSize (1152, 768);
-    HawkinsComponent *hc = new HawkinsComponent();
+    HawkinsComponent *hc = new HawkinsComponent("../../../../Source/layout.json");
     addAndMakeVisible(*hc);
     
 }
@@ -23,14 +23,9 @@ MainContentComponent::~MainContentComponent()
 {
     
 }
-//
+
 void MainContentComponent::paint (Graphics& g)
-{
-    //background
-    g.fillAll (Colour(51,51,51));
-    
-    
-    
+{    
 }
 
 void MainContentComponent::resized()

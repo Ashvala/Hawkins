@@ -105,13 +105,14 @@ public:
      @brief Constructor
      @param url URL
      */
+    hawkins(){
+        
+    }
+    
     hawkins(std::string url)
     {
-        std::ifstream t(url);
-        std::string content((std::istreambuf_iterator<char>(t)),
-                            std::istreambuf_iterator<char>());
-        str = content;
-        this->parse();
+        setURL(url);
+        
     }
     
     virtual ~hawkins()
@@ -119,7 +120,15 @@ public:
         //destructor!
         //A clever joke about Shiva being the destroyer of worlds goes here, perhaps?
     }
-    
+    void setURL(std::string url){
+        //        Hawkins("../../../../Source/layout.json")
+        std::ifstream t(url);
+        std::string content((std::istreambuf_iterator<char>(t)),
+                            std::istreambuf_iterator<char>());
+        str = content;
+        parse();
+        
+    }
     /**
      @brief this converts the json file's string to a json object.
      */
@@ -303,7 +312,12 @@ public:
                               (float) paintableElement.width, (float)paintableElement.height,1.0);
                 
             }
+            if(paintableElement.type == "image")
+            {
+                
+            }
         }
+        
     }
     
     
