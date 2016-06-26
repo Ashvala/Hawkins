@@ -946,6 +946,7 @@
 		C232473DA23027A6A1E5730A /* juce_Desktop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_Desktop.h; path = ../../../../Downloads/JUCE/modules/juce_gui_basics/components/juce_Desktop.h; sourceTree = SOURCE_ROOT; };
 		C241DAD4817BE5E3662AB913 /* juce_ReferenceCountedObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_ReferenceCountedObject.h; path = ../../../../Downloads/JUCE/modules/juce_core/memory/juce_ReferenceCountedObject.h; sourceTree = SOURCE_ROOT; };
 		C281CE541D1F4DE500764F51 /* json.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = json.hpp; path = ../../Source/json.hpp; sourceTree = "<group>"; };
+		C281CE5A1D1F5F1000764F51 /* HawkinsComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = HawkinsComponent.hpp; path = ../../Source/HawkinsComponent.hpp; sourceTree = "<group>"; };
 		C2AA9E9A302CA39BB0415BE7 /* juce_Value.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_Value.h; path = ../../../../Downloads/JUCE/modules/juce_data_structures/values/juce_Value.h; sourceTree = SOURCE_ROOT; };
 		C2AF6A46F228A7835EDDE49F /* jdphuff.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jdphuff.c; path = ../../../../Downloads/JUCE/modules/juce_graphics/image_formats/jpglib/jdphuff.c; sourceTree = SOURCE_ROOT; };
 		C30A82B3525FD553FA595DEC /* juce_AudioFormatManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_AudioFormatManager.cpp; path = ../../../../Downloads/JUCE/modules/juce_audio_formats/format/juce_AudioFormatManager.cpp; sourceTree = SOURCE_ROOT; };
@@ -3150,6 +3151,7 @@
 			children = (
 				3C85795FFD13C3226A65E42C /* MainComponent.cpp */,
 				C281CE541D1F4DE500764F51 /* json.hpp */,
+				C281CE5A1D1F5F1000764F51 /* HawkinsComponent.hpp */,
 				CB987E200F91C3E32DA8E503 /* MainComponent.h */,
 				C203897B1D1F25AD006B0042 /* Hawkins.hpp */,
 				4FC6C5BD1DAC79FDB61DA639 /* Main.cpp */,
