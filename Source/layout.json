@@ -1,16 +1,5 @@
 {
-    "image":{
-        "type": "image",
-        "position":{
-            "x": 630,
-            "y": 120
-        },
-        "size":{
-            "width":300,
-            "height": 300
-        },
-        "file-url": "/Library/User Pictures/Fun/Ying-Yang.png"
-    },
+
     "text_obj": {
         "type": "painted_text",
         "position": {
@@ -210,6 +199,18 @@
         "animation_type": "move",
         "duration": 3000,
         "final_position": [400,400]
+    },
+    "image":{
+        "type": "image",
+        "position":{
+            "x": 630,
+            "y": 120
+        },
+        "size":{
+            "width":300,
+            "height": 300
+        },
+        "file-url": "/Library/User Pictures/Fun/Ying-Yang.png"
     }
 
 }

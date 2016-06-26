@@ -10,6 +10,7 @@
 #define HawkinsComponent_hpp
 
 #include "Hawkins.hpp"
+
 class buttonCallbacks{
     
 public:
@@ -58,7 +59,7 @@ public:
     HawkinsComponent(std::string url){
         Hawkins.setURL(url);
         setSize (1152, 768);
-        ComponentArray = Hawkins.getComponents("Slider");
+        SliderComponentArray = Hawkins.getComponents("Slider");
         TextButtonComponentArray = Hawkins.getComponents("TextButton");
         
         for (auto &child: TextButtonComponentArray)
@@ -70,18 +71,15 @@ public:
             t->setButtonText(child["name"]);
             t->setBounds(child["position"]["x"], child["position"]["y"],
                          child["size"]["width"], child["size"]["height"]);
-            
             t->addListener(this);
-            
             componentMap[child["name"]] = t;
             textButtonArray.add(t);
+            
         }
         
         defaultMapFunctions();
         AnimationPropArray = Hawkins.getAnimations();
         generateComponentAnimators();
-        
-        
     }
     ~HawkinsComponent(){
         
@@ -178,7 +176,7 @@ private:
     hawkins Hawkins;
     // all the arrays
     Array<json> TextButtonComponentArray;
-    Array<json> ComponentArray;
+    Array<json> SliderComponentArray;
     OwnedArray<Button> textButtonArray;
     OwnedArray<Slider> SliderComponents;
     Array<animatableProperties> AnimationPropArray;

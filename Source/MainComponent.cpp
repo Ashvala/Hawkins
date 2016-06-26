@@ -25,7 +25,8 @@ MainContentComponent::~MainContentComponent()
 }
 
 void MainContentComponent::paint (Graphics& g)
-{    
+{
+    
 }
 
 void MainContentComponent::resized()
