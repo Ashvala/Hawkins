@@ -1,5 +1,5 @@
 {
-
+    
     "text_obj": {
         "type": "painted_text",
         "position": {
@@ -15,7 +15,7 @@
         "text": "Hello, Hawkins",
         "font-size": 48.0
     },
-
+    
     "text_obj2": {
         "type": "painted_text",
         "position": {
@@ -31,7 +31,7 @@
         "text": "This is a test to make sure that everything works perfectly. This uses a JSON file to define the layout of this app",
         "font-size": 20.0
     },
-
+    
     "rectangle1": {
         "type": "painted_rect",
         "position": {
@@ -45,8 +45,8 @@
         "colour": [100, 100, 100],
         "comment": "This is a border"
     },
-
-
+    
+    
     "text_obj3": {
         "type": "painted_text",
         "position": {
@@ -62,7 +62,7 @@
         "text": "Juce-y, huh?",
         "font-size": 28.0
     },
-
+    
     "grid1": {
         "type": "painted_rect",
         "position": {
@@ -75,7 +75,7 @@
         },
         "colour": [127, 127, 127]
     },
-
+    
     "text_obj4": {
         "type": "painted_text",
         "position": {
@@ -89,7 +89,7 @@
         "font": "Avenir Light",
         "colour": [255, 255, 255],
         "text": "This is a pretty great way of prototyping interfaces on the fly",
-        "font-size": 20.0
+        "font-size": 18.0
     },
     "text_obj5": {
         "type": "painted_text",
@@ -103,11 +103,42 @@
         },
         "font": "Avenir Light",
         "colour": [255, 255, 255],
-        "text": "Especially because JSON is a fairly human parsable way of notating data.",
-        "font-size": 20.0
+        "text": "Especially because JSON is a very human friendly way of notating data.",
+        "font-size": 18.0
     },
-
     "text_obj6": {
+        "type": "painted_text",
+        "position": {
+            "x": 30,
+            "y": 210
+        },
+        "size": {
+            "width": 800,
+            "height": 40
+        },
+        "font": "Avenir Light",
+        "colour": [255, 255, 255],
+        "text": "You can paint things and add components with the JSON file.",
+        "font-size": 18.0
+    },
+    
+    "text_obj6_1": {
+        "type": "painted_text",
+        "position": {
+            "x": 30,
+            "y": 240
+        },
+        "size": {
+            "width": 800,
+            "height": 40
+        },
+        "font": "Avenir Light",
+        "colour": [255, 255, 255],
+        "text": "You can even animate components! Click on the animate button to find out more.",
+        "font-size": 18.0
+    },
+    
+    "text_obj7": {
         "type": "painted_text",
         "position": {
             "x": 30,
@@ -120,9 +151,9 @@
         "font": "Avenir Next",
         "colour": [255, 255, 255],
         "text": "Here's an ellipse",
-        "font-size": 20.0
+        "font-size": 18.0
     },
-
+    
     "ellipse": {
         "type": "painted_ellipse",
         "position": {
@@ -135,10 +166,10 @@
         },
         "colour": [255, 255, 255]
     },
-    "text_obj7": {
+    "text7_1": {
         "type": "painted_text",
         "position": {
-            "x": 430,
+            "x": 230,
             "y": 300
         },
         "size": {
@@ -147,58 +178,134 @@
         },
         "font": "Avenir Next",
         "colour": [255, 255, 255],
-        "text": "Here's a button",
-        "font-size": 20.0
+        "text": "Here's a rectangle",
+        "font-size": 18.0
     },
-    "component1": {
-        "type": "component",
-        "component_type": "TextButton",
-        "name": "open button",
-        "callback-function": "openButtonPressed",
+    
+    "tiny_rect": {
+        "type": "painted_rect",
         "position": {
-            "x": 430,
+            "x": 230,
             "y": 340
         },
         "size": {
             "width": 100,
-            "height": 30
-        }
+            "height": 100
+        },
+        "colour": [255, 255, 255]
     },
-    "component2": {
-        "type": "component",
-        "component_type": "TextButton",
-        "name": "Another Button",
-        "callback-function": "anotherButtonPressed",
+    
+    "text_obj8": {
+        "type": "painted_text",
         "position": {
             "x": 30,
-            "y": 540
+            "y": 450
+        },
+        "size": {
+            "width": 800,
+            "height": 40
+        },
+        "font": "Avenir Heavy",
+        "colour": [255, 255, 255],
+        "text": "You can attach callbacks to your components.",
+        "font-size": 22.0
+    },
+    "text_obj8_1": {
+        "type": "painted_text",
+        "position": {
+            "x": 30,
+            "y": 490
+        },
+        "size": {
+            "width": 800,
+            "height": 40
+        },
+        "font": "Avenir Next",
+        "colour": [255, 255, 255],
+        "text": "Click the open button to trigger a file chooser",
+        "font-size": 18.0
+    },
+    
+    "component1": {
+        "type": "component",
+        "component_type": "TextButton",
+        "name": "Open a file!",
+        "callback-function": "openButtonPressed",
+        "position": {
+            "x": 340,
+            "y": 495
         },
         "size": {
             "width": 100,
-            "height": 30
+            "height": 25
         }
+    },
+    "text_obj8_2": {
+        "type": "painted_text",
+        "position": {
+            "x": 30,
+            "y": 530
+        },
+        "size": {
+            "width": 800,
+            "height": 40
+        },
+        "font": "Avenir Heavy",
+        "colour": [255, 255, 255],
+        "text": "You can define animation properties in the JSON file. For example:",
+        "font-size": 22.0
+    },
+    "text_obj8_3": {
+        "type": "painted_text",
+        "position": {
+            "x": 30,
+            "y": 570
+        },
+        "size": {
+            "width": 800,
+            "height": 40
+        },
+        "font": "Avenir Next",
+        "colour": [255, 255, 255],
+        "text": "Click this button to move the open button!",
+        "font-size": 18.0
     },
     "component3": {
         "type": "component",
         "component_type": "TextButton",
-        "name": "Move the Open Button!",
+        "name": "Move it!",
         "callback-function": "moveOpenButton",
         "position": {
-            "x": 430,
-            "y": 540
+            "x": 340,
+            "y": 570
         },
         "size": {
             "width": 100,
             "height": 30
         }
     },
-
+    
     "animation1":{
         "type": "animated",
-        "component_to_animate": "open button",
+        "component_to_animate": "Open a file!",
         "animation_type": "move",
         "duration": 3000,
-        "final_position": [400,400]
+        "final_position": [470,495]
+    },
+    "text_obj8_4": {
+        "type": "painted_text",
+        "position": {
+            "x": 30,
+            "y": 610
+        },
+        "size": {
+            "width": 800,
+            "height": 40
+        },
+        "font": "Avenir Next",
+        "colour": [255, 255, 255],
+        "text": "Unfortunately, You need to write the code for the callbacks and map it manually.",
+        "font-size": 18.0
     },
     "image":{
         "type": "image",
@@ -211,6 +318,52 @@
             "height": 300
         },
         "file-url": "/Library/User Pictures/Fun/Ying-Yang.png"
+    },
+    
+    "text_obj9_1": {
+        "type": "painted_text",
+        "position": {
+            "x": 630,
+            "y": 450
+        },
+        "size": {
+            "width": 800,
+            "height": 40
+        },
+        "font": "Avenir Next",
+        "colour": [255, 255, 255],
+        "text": "Yes! You can draw images too!",
+        "font-size": 18.0
+    },
+    
+    "text_obj9_2": {
+        "type": "painted_text",
+        "position": {
+            "x": 630,
+            "y": 480
+        },
+        "size": {
+            "width": 800,
+            "height": 40
+        },
+        "font": "Avenir Next",
+        "colour": [255, 255, 255],
+        "text": "Click on the button to open this JSON file!",
+        "font-size": 18.0
+    },
+    "component4": {
+        "type": "component",
+        "component_type": "TextButton",
+        "name": "Open JSON",
+        "callback-function": "openJSON",
+        "position": {
+            "x": 900,
+            "y": 485
+        },
+        "size": {
+            "width": 100,
+            "height": 30
+        }
     }
-
+    
 }

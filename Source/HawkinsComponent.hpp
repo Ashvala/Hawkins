@@ -38,6 +38,7 @@ public:
     static void anotherButtonPressed(){
         std::cout << "Hello!" << std::endl;
     }
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (buttonCallbacks)
 };
 
@@ -56,7 +57,7 @@ public:
     
     //==============================================================================
     
-    HawkinsComponent(std::string url){
+    HawkinsComponent(std::string url): JSON_URL(url){
         Hawkins.setURL(url);
         setSize (1152, 768);
         SliderComponentArray = Hawkins.getComponents("Slider");
@@ -127,13 +128,18 @@ public:
         
     }
     
-    
+    void openJSON(){
+        std::string final_cmd = "open " + JSON_URL;
+        std::system(final_cmd.c_str());
+    }
     
     void defaultMapFunctions(){
         mapFunction("openButtonPressed", [&]{buttonCallbacks::openButtonPressed();});
         mapFunction("anotherButtonPressed", buttonCallbacks::anotherButtonPressed); // map as fn ptr
-        mapFunction("moveOpenButton",[&]{HawkinsComponent::moveButtonPressed();}); // map as lambda
+        mapFunction("moveOpenButton",[&]{HawkinsComponent::moveButtonPressed();});// map as lambda
+        mapFunction("openJSON", [&]{HawkinsComponent::openJSON();});
     }
+    
     
     void generateComponentAnimators(){
         for (auto &animators: AnimationPropArray){
@@ -174,6 +180,7 @@ private:
     
     //hawkins object
     hawkins Hawkins;
+    std::string JSON_URL;
     // all the arrays
     Array<json> TextButtonComponentArray;
     Array<json> SliderComponentArray;
